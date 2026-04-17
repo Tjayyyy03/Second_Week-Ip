@@ -1,0 +1,51 @@
+CREATE TABLE tbl_UserAccounts (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    FullName VARCHAR(100),
+    CellphoneNumber VARCHAR(20),
+    Username VARCHAR(50),
+    Password VARCHAR(50)
+);
+
+CREATE TABLE tbl_PaymentAccounts (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(50),
+    AccountName VARCHAR(100),
+    AccountNumber VARCHAR(50),
+    Balance DECIMAL(18,2),
+    PaymentType VARCHAR(20)
+);
+
+CREATE TABLE tbl_Bills (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(50),
+    BillType VARCHAR(50),
+    BillAmount DECIMAL(18,2)
+);
+
+CREATE TABLE tbl_Transactions (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(50),
+    BillType VARCHAR(50),
+    Amount DECIMAL(18,2),
+    PaymentType VARCHAR(20),
+    DatePaid DATETIME
+);
+
+INSERT INTO tbl_UserAccounts (FullName, CellphoneNumber, Username, Password)
+VALUES ('Tom Cruz', '09123456789', 'tom', 'tom123');
+
+INSERT INTO tbl_PaymentAccounts (Username, AccountName, AccountNumber, Balance, PaymentType)
+VALUES 
+('tom', 'Tom GCash', '1111-2222', 5000, 'GCash'),
+('tom', 'Tom Maya', '3333-4444', 3000, 'Maya');
+
+INSERT INTO tbl_Bills (Username, BillType, BillAmount)
+VALUES 
+('tom', 'Electricity Bill', 1200),
+('tom', 'Water Bill', 300),
+('tom', 'Product', 500);
+
+INSERT INTO tbl_Transactions (Username, BillType, Amount, PaymentType, DatePaid)
+VALUES
+('tom', 'Electricity Bill', 1200, 'GCash', GETDATE());
+
